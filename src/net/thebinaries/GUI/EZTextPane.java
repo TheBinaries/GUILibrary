@@ -19,55 +19,75 @@ import javax.swing.text.StyledDocument;
  * @author Jacob
  */
 public class EZTextPane extends JTextPane {
-  private final StyledDocument sd ;
+
+    private StyledDocument sd;
 
     public EZTextPane() {
         this.sd = getStyledDocument();
     }
-    public EZTextPane(String s)
-    {
-    this.sd = getStyledDocument();
-    
+
+    public EZTextPane(String s) {
+        this.sd = getStyledDocument();
+        setDocument(sd);
+        
+        setText(s);
     }
-  
-    public void setStyleAt(int attribute, int start, int end)
-    {
-    SimpleAttributeSet as = new SimpleAttributeSet() ;
-    as.addAttribute(attribute,attribute);
-    String sstart = getText().substring(0, start) ;
-    String send  = getText().substring(end) ;
+/**
+ * 
+ * @param attribute the style attribute that will be designated to the selected text
+ * @param start the starting point of the text
+ * @param end the ending point of the text
+ */
+    public void setStyleAt(Object attribute, int start, int end) {
+        SimpleAttributeSet as = new SimpleAttributeSet();
+        as.addAttribute(StyleConstants.CharacterConstants.Italic, "atr");
+        String sstart = getText().substring(0, start);
+        String send = getText().substring(end);
+         String text = getText().substring(start, end);
         try {
-             
-            setText(sstart) ;
-            sd.insertString(start,getText(start, end), as);
-            setDocument(sd) ;
-            setText(getText() + send) ;
+
+          sd.insertString(start, text, as);
+             sd.remove(end, text.length());
+              setDocument(sd);
         } catch (BadLocationException ex) {
             Logger.getLogger(EZTextPane.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
-    
-    
+
     }
-    
-        public void setColorAt(Color color, int start, int end)
-    {
-    SimpleAttributeSet as = new SimpleAttributeSet() ;
-    as.addAttribute(StyleConstants.CharacterConstants.Foreground,color);
-    String sstart = getText().substring(0, start) ;
-    String send  = getText().substring(end) ;
+/**
+ * 
+ * @param color the color of the text
+ * @param start the starting point of the text
+ * @param end the ending point of the text
+ */
+    public void setColorAt(Color color, int start, int end) {
+        SimpleAttributeSet as = new SimpleAttributeSet();
+        as.addAttribute(StyleConstants.CharacterConstants.Foreground, color);
+        String sstart = getText().substring(0, start);
+        String send = getText().substring(end);
+        String text = getText().substring(start, end);
         try {
-            setText(sstart) ;
-            sd.insertString(start,getText(start, end), as);
-            setDocument(sd) ;
-            setText(getText() + send) ;
+           // setText(sstart) ;
+          
+            sd.insertString(start, text, as);
+             sd.remove(end, text.length());
+            //  setDocument(sd);
+          
+        //    setText(getText() + send) ;
+          
         } catch (BadLocationException ex) {
             Logger.getLogger(EZTextPane.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    
-    
-    
+     
     }
+
+    public void removeTextAt(int start, int end) {
+        try {
+            getDocument().remove(start, end);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(EZTextPane.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
 }
