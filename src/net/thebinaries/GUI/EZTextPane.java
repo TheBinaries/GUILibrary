@@ -19,10 +19,15 @@ import javax.swing.text.StyledDocument;
  * @author Jacob
  */
 public class EZTextPane extends JTextPane {
-  private StyledDocument sd ;
+  private final StyledDocument sd ;
 
     public EZTextPane() {
         this.sd = getStyledDocument();
+    }
+    public EZTextPane(String s)
+    {
+    this.sd = getStyledDocument();
+    
     }
   
     public void setStyleAt(int attribute, int start, int end)
