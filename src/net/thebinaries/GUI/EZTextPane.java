@@ -12,6 +12,7 @@ import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleConstants.CharacterConstants;
 import javax.swing.text.StyledDocument;
 
 /**
@@ -21,65 +22,68 @@ import javax.swing.text.StyledDocument;
 public class EZTextPane extends JTextPane {
 
     private StyledDocument sd;
+    private SimpleAttributeSet as = new SimpleAttributeSet();
 
     public EZTextPane() {
         this.sd = getStyledDocument();
+
+        setDocument(sd);
     }
 
     public EZTextPane(String s) {
         this.sd = getStyledDocument();
+
         setDocument(sd);
-        
+
         setText(s);
     }
-/**
- * 
- * @param attribute the style attribute that will be designated to the selected text
- * @param start the starting point of the text
- * @param end the ending point of the text
- */
-    public void setStyleAt(Object attribute, int start, int end) {
-        SimpleAttributeSet as = new SimpleAttributeSet();
-        as.addAttribute(StyleConstants.CharacterConstants.Italic, "atr");
-        String sstart = getText().substring(0, start);
-        String send = getText().substring(end);
-         String text = getText().substring(start, end);
-        try {
 
-          sd.insertString(start, text, as);
-             sd.remove(end, text.length());
-              setDocument(sd);
-        } catch (BadLocationException ex) {
-            Logger.getLogger(EZTextPane.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    public void setBold(boolean b) {
+    as.addAttribute(CharacterConstants.Bold,b );
+    
     }
-/**
- * 
- * @param color the color of the text
- * @param start the starting point of the text
- * @param end the ending point of the text
- */
-    public void setColorAt(Color color, int start, int end) {
-        SimpleAttributeSet as = new SimpleAttributeSet();
+
+    public void setItalic(boolean b) {
+    as.addAttribute(CharacterConstants.Italic,b );
+    }
+
+    public void setUnderline(boolean b) {
+       as.addAttribute(CharacterConstants.Underline,b );
+    }
+     public void setSubscript(boolean b) {
+       as.addAttribute(CharacterConstants.Subscript,b );
+    }
+     public void setSuperscript(boolean b) {
+       as.addAttribute(CharacterConstants.Superscript,b );
+    }
+    
+    
+    
+    /**
+     *
+     * @param color the color of the text
+     * @param start the starting point of the text
+     * @param end   the ending point of the text
+     */
+    public void setColor(Color color) {
         as.addAttribute(StyleConstants.CharacterConstants.Foreground, color);
-        String sstart = getText().substring(0, start);
-        String send = getText().substring(end);
-        String text = getText().substring(start, end);
+    }
+    
+    public void setStyle(int start, int end )
+    {
+        SimpleAttributeSet as2 = new SimpleAttributeSet( );
+        as2.addAttributes(as.copyAttributes());  
         try {
-           // setText(sstart) ;
-          
-            sd.insertString(start, text, as);
-             sd.remove(end, text.length());
-            //  setDocument(sd);
-          
-        //    setText(getText() + send) ;
-          
+            String s = getText().substring(start,end) ;
+            sd.insertString(start, getText().substring(start,end), as2);
+            removeTextAt(end,s.length());
         } catch (BadLocationException ex) {
             Logger.getLogger(EZTextPane.class.getName()).log(Level.SEVERE, null, ex);
         }
-     
+    
     }
+
+    
 
     public void removeTextAt(int start, int end) {
         try {
@@ -87,7 +91,7 @@ public class EZTextPane extends JTextPane {
         } catch (BadLocationException ex) {
             Logger.getLogger(EZTextPane.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 }
