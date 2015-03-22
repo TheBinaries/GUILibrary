@@ -20,6 +20,8 @@ import javax.swing.JComponent;
  * @author Jacob
  */
 public class EZButton extends JButton {
+    public int textdirection = 0 ;
+    public String text = getText() ;
 /**
  * 
  * @param text the text placed on the button
@@ -38,6 +40,12 @@ public class EZButton extends JButton {
     public EZButton(String text, Font f) {
         super(text);
         setFont(f);
+    }
+    
+    public EZButton(String s)
+    {
+    super(s) ;
+    
     }
 
     /**
@@ -65,29 +73,49 @@ public class EZButton extends JButton {
     /**
      * 
      * @param direction the direction the text is placed at
+     * @param g the graphic of the component
      * @see EZGUIConstants.CLOCKWISE
      * @see EZGUIConstants.COUNTERCLOCKWISE
      * @see EZGUIConstants.Reflection
      */
-    public void rotateText(int direction)
+    public int rotateText(int direction)
     {
-        Graphics g = getGraphics().create() ;
-        Graphics2D g2 = (Graphics2D) g ;
-      if (direction == EZGUIConstants.CLOCKWISE ) {
-         g2.rotate(Math.PI / 2.0);
-         g2.translate(0, -getSize().width);
-      } else if (direction == EZGUIConstants.COUNTERCLOCKWISE)  {
+        textdirection = direction ;
+        text = getText() ;
+        repaint() ;
+    return direction ;
+     
+         
+}
+     
+        
+    @Override
+        public void paintComponent(Graphics g)
+        {
+                super.paintComponent(g); 
+       Graphics2D g2 = (Graphics2D) g ;
+      if (textdirection == EZGUIConstants.CLOCKWISE ) {
+           g2.translate(0, -getSize().width);
+            g2.rotate(-Math.PI / 2.0);
+           
+          g2.drawString("HELLO", 0, 0);
+          System.out.println(text);
+       // g2.rotate(Math.PI / 2.0);
+        // g2.translate(0, getSize().width);
+
+      } else if (textdirection == EZGUIConstants.COUNTERCLOCKWISE)  {
          g2.translate(0, getSize().height);
          g2.rotate(- Math.PI / 2.0);
         
-      }else
-      {
-          g2.rotate(Math.PI) ;
-      
       }
-      super.paintComponent(g2);
-         
-}
+  
+      
+  
+        
+       
+        
+        
+        }
         
     
     
@@ -113,4 +141,5 @@ public class EZButton extends JButton {
 
         }
     }
+    
 }

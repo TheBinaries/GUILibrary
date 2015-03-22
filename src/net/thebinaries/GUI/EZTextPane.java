@@ -6,10 +6,12 @@
 package net.thebinaries.GUI;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
@@ -190,7 +192,7 @@ public class EZTextPane extends JTextPane {
      * @param width  the width of the image
      * @param height the height of the image
      * @param i      the image to be added
-     * @param b determines whether to include the image in the same line or create a new line for the image, if true then the image will put on a new line
+     * @param b determines whether to include the image in the same line or create a new line for the image, if true then the image will put on its own line
      */
     public void addImageAt(int start, int width, int height, Image i, boolean b) {
 
@@ -203,6 +205,7 @@ public class EZTextPane extends JTextPane {
             insertTextAt(start, "\n");
             setCaretPosition(start+1);
             insertComponent(l);
+            insertTextAt(start, "\n");
             setCaretPosition(start+2);
             
         }else{
@@ -212,5 +215,37 @@ public class EZTextPane extends JTextPane {
         }
         
     }
+    /**
+     * 
+     * @param start the position to insert the component
+     * @param width the width of the component
+     * @param height the height of the component
+     * @param component the component to be added
+* @param b determines whether to include the image in the same line or create a new line for the image, if true then the image will put on its own line
+     */
+        public void addComponentAt(int start, int width, int height,  JComponent component, boolean b) {
+
+     
+
+
+        component.setSize(width, height);
+        component.setMaximumSize(new Dimension(width,height));
+      
+        if(b)
+        {
+            insertTextAt(start, "\n");
+            setCaretPosition(start+1);
+            insertComponent(component);
+            insertTextAt(start, "\n");
+            setCaretPosition(start+2);
+            
+        }else{
+        setCaretPosition(start);
+        insertComponent(component);
+        setCaretPosition(start+1);
+        }
+        
+        }
+    
 
 }
