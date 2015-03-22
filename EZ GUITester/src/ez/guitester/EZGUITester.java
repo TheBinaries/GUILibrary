@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package ez.guitester;
+
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.text.StyleConstants;
-import net.thebinaries.GUI.* ;
+import net.thebinaries.GUI.*;
+
 /**
  *
  * @author Jacob
@@ -19,19 +21,28 @@ public class EZGUITester {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    EZFrame ef = new EZFrame("TEST") ;
-    EZTextPane etp = new EZTextPane("This is a test for the EZtextpane") ;
-    ef.add(etp);
- // etp.setStyleAt("atr", 0, 4);
-  etp.setColorAt(Color.RED, 0, 4);
-    etp.setColorAt(Color.GREEN, 8, 12);
+        EZFrame ef = new EZFrame("TEST");
+        EZTextPane etp = new EZTextPane("This is a test for the EZtextpane\nHello World People PopCorn Carrot");
+        ef.add(etp);
 
-      ef.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-     ef.setSize(500,500) ;
-    ef.setVisible(true) ;
-    
+        etp.setBold(true);
+          etp.setColor(Color.RED);
+        etp.setUnderline(true) ;
+        etp.setStyle(0, 4);
+        etp.setColor(Color.BLUE) ;
+        etp.setSubscript(true);
+        etp.setStyle(5, 7) ;
+        etp.setBold(true) ;
+        etp.setColor(Color.MAGENTA) ;
+        etp.setSubscript(false);
+        System.out.println(etp.getColor());
+        etp.setStyle(34,52) ;
+       
+
+        ef.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ef.setSize(500, 500);
+        ef.setVisible(true);
+
     }
-    
-    
-    
+
 }
