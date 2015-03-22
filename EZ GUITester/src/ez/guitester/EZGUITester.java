@@ -6,8 +6,12 @@
 package ez.guitester;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.text.StyleConstants;
 import net.thebinaries.GUI.*;
 
 /**
@@ -35,8 +39,14 @@ public class EZGUITester {
         etp.setBold(true) ;
         etp.setColor(Color.MAGENTA) ;
         etp.setSubscript(false);
-        System.out.println(etp.getColor());
+       
+        try {
+            etp.addImageAt(etp.getText().length(),30,20,ImageIO.read(new File("C:\\Users\\Jacob\\Pictures\\cool-background-wallpapers_copy.jpg")), false) ;
+        } catch (IOException ex) {
+            Logger.getLogger(EZGUITester.class.getName()).log(Level.SEVERE, null, ex);
+        }
         etp.setStyle(34,52) ;
+        System.out.println(etp.isBold());
        
 
         ef.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
