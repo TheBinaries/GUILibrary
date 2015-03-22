@@ -37,53 +37,120 @@ public class EZTextPane extends JTextPane {
 
         setText(s);
     }
-
+      /**
+      * 
+      * @param b determines whether the text should be bold
+      */
     public void setBold(boolean b) {
-    as.addAttribute(CharacterConstants.Bold,b );
-    
+        as.addAttribute(CharacterConstants.Bold, b);
+
     }
 
+    /**
+     *
+     * @param b determines whether the text should be italicized
+     */
     public void setItalic(boolean b) {
-    as.addAttribute(CharacterConstants.Italic,b );
+        as.addAttribute(CharacterConstants.Italic, b);
     }
 
+    /**
+     *
+     * @param b determines whether the text should be underlined
+     */
     public void setUnderline(boolean b) {
-       as.addAttribute(CharacterConstants.Underline,b );
+        as.addAttribute(CharacterConstants.Underline, b);
     }
-     public void setSubscript(boolean b) {
-       as.addAttribute(CharacterConstants.Subscript,b );
+
+    /**
+     *
+     * @param b determines whether the text should be a subscript
+     */
+    public void setSubscript(boolean b) {
+        as.addAttribute(CharacterConstants.Subscript, b);
     }
-     public void setSuperscript(boolean b) {
-       as.addAttribute(CharacterConstants.Superscript,b );
+
+    /**
+     *
+     * @param b determines whether the text should be a superscript
+     */
+    public void setSuperscript(boolean b) {
+        as.addAttribute(CharacterConstants.Superscript, b);
     }
-    
-    
-    
+
     /**
      *
      * @param color the color of the text
-     * @param start the starting point of the text
-     * @param end   the ending point of the text
      */
     public void setColor(Color color) {
         as.addAttribute(StyleConstants.CharacterConstants.Foreground, color);
     }
+    //****************************************************************************
+  /**
+   * 
+   * @return whether the current attribute set is set to be bold
+   */
+    public boolean isBold() {
+      return StyleConstants.isBold(as) ;
+    }
+
+  /**
+   * 
+   * @return whether the current attribute set is set to be a italicized
+   */
+    public boolean isItalicized() {
+        return StyleConstants.isItalic(as) ;
+    }
+
+  /**
+   * 
+   * @return whether the current attribute set is set to be underlined
+   */
+    public boolean isUnderlined() {
+        return StyleConstants.isUnderline(as) ;
+    }
+
+     /**
+   * 
+   * @return whether the current attribute set is set to be a subscript
+   */
+    public boolean isSubscript() {
+       return StyleConstants.isSubscript(as) ;
+    }
+
+  /**
+   * 
+   * @return whether the current attribute set is set to be a superscript
+   */
+    public boolean isSuperscript() {
+         return StyleConstants.isItalic(as) ;
+    }
+
+/**
+ * 
+ * @return the current color of the text
+ */
+    public Color getColor() {
+        return  sd.getForeground(as) ;
+    }
     
-    public void setStyle(int start, int end )
-    {
-        SimpleAttributeSet as2 = new SimpleAttributeSet( );
-        as2.addAttributes(as.copyAttributes());  
+  
+/**
+ * 
+ * @param start - the starting index >=0
+ * @param end - the ending index <= document length
+ */
+    public void setStyle(int start, int end) {
+        
         try {
-            String s = getText().substring(start,end) ;
-            sd.insertString(start, getText().substring(start,end), as2);
-            removeTextAt(end,s.length());
+            String s = getText().substring(start, end);
+            sd.insertString(start, getText().substring(start, end), as);
+            removeTextAt(end, s.length());
         } catch (BadLocationException ex) {
             Logger.getLogger(EZTextPane.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
-    }
 
-    
+    }
 
     public void removeTextAt(int start, int end) {
         try {
