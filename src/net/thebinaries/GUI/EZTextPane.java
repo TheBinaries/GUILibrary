@@ -6,8 +6,11 @@
 package net.thebinaries.GUI;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
@@ -37,10 +40,11 @@ public class EZTextPane extends JTextPane {
 
         setText(s);
     }
-      /**
-      * 
-      * @param b determines whether the text should be bold
-      */
+
+    /**
+     *
+     * @param b determines whether the text should be bold
+     */
     public void setBold(boolean b) {
         as.addAttribute(CharacterConstants.Bold, b);
 
@@ -85,63 +89,64 @@ public class EZTextPane extends JTextPane {
     public void setColor(Color color) {
         as.addAttribute(StyleConstants.CharacterConstants.Foreground, color);
     }
+
     //****************************************************************************
-  /**
-   * 
-   * @return whether the current attribute set is set to be bold
-   */
+
+    /**
+     *
+     * @return whether the current attribute set is set to be bold
+     */
     public boolean isBold() {
-      return StyleConstants.isBold(as) ;
+        return StyleConstants.isBold(as);
     }
 
-  /**
-   * 
-   * @return whether the current attribute set is set to be a italicized
-   */
+    /**
+     *
+     * @return whether the current attribute set is set to be a italicized
+     */
     public boolean isItalicized() {
-        return StyleConstants.isItalic(as) ;
+        return StyleConstants.isItalic(as);
     }
 
-  /**
-   * 
-   * @return whether the current attribute set is set to be underlined
-   */
+    /**
+     *
+     * @return whether the current attribute set is set to be underlined
+     */
     public boolean isUnderlined() {
-        return StyleConstants.isUnderline(as) ;
+        return StyleConstants.isUnderline(as);
     }
 
-     /**
-   * 
-   * @return whether the current attribute set is set to be a subscript
-   */
+    /**
+     *
+     * @return whether the current attribute set is set to be a subscript
+     */
     public boolean isSubscript() {
-       return StyleConstants.isSubscript(as) ;
+        return StyleConstants.isSubscript(as);
     }
 
-  /**
-   * 
-   * @return whether the current attribute set is set to be a superscript
-   */
+    /**
+     *
+     * @return whether the current attribute set is set to be a superscript
+     */
     public boolean isSuperscript() {
-         return StyleConstants.isItalic(as) ;
+        return StyleConstants.isItalic(as);
     }
 
-/**
- * 
- * @return the current color of the text
- */
+    /**
+     *
+     * @return the current color of the text
+     */
     public Color getColor() {
-        return  sd.getForeground(as) ;
+        return sd.getForeground(as);
     }
-    
-  
-/**
- * 
- * @param start - the starting index >=0
- * @param end - the ending index <= document length
- */
+
+    /**
+     *
+     * @param start - the starting index >=0
+     * @param end   - the ending index <= document length
+     */
     public void setStyle(int start, int end) {
-        
+
         try {
             String s = getText().substring(start, end);
             sd.insertString(start, getText().substring(start, end), as);
@@ -152,13 +157,49 @@ public class EZTextPane extends JTextPane {
 
     }
 
+    /**
+     *
+     * @param start the starting position to remove the text
+     * @param end   the ending position to remove the text
+     */
     public void removeTextAt(int start, int end) {
         try {
             getDocument().remove(start, end);
         } catch (BadLocationException ex) {
             Logger.getLogger(EZTextPane.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
+    /**
+     *
+     * @param start the place within the established text where the new text
+     *              will be inserted
+     * @param s     the text to be inserted
+     */
+    public void insertTextAdd(int start, String s) {
+        try {
+            getDocument().insertString(start, s, as);
+        } catch (BadLocationException ex) {
+            Logger.getLogger(EZTextPane.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /**
+     *
+     * @param start  the starting position of where the image will be inserted
+     * @param width  the width of the image
+     * @param height the height of the image
+     * @param i      the image to be added
+     */
+    public void addImageAt(int start, int width, int height, Image i) {
+
+        Image resizedImage = (Image) i.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+
+        JLabel l = new JLabel(new ImageIcon(resizedImage));
+        l.setSize(width, height);
+        setCaretPosition(start);
+        insertComponent(l);
+        setCaretPosition(start + 1);
     }
 
 }
