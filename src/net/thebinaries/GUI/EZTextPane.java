@@ -176,7 +176,7 @@ public class EZTextPane extends JTextPane {
      *              will be inserted
      * @param s     the text to be inserted
      */
-    public void insertTextAdd(int start, String s) {
+    public void insertTextAt(int start, String s) {
         try {
             getDocument().insertString(start, s, as);
         } catch (BadLocationException ex) {
@@ -190,16 +190,27 @@ public class EZTextPane extends JTextPane {
      * @param width  the width of the image
      * @param height the height of the image
      * @param i      the image to be added
+     * @param b determines whether to include the image in the same line or create a new line for the image, if true then the image will put on a new line
      */
-    public void addImageAt(int start, int width, int height, Image i) {
+    public void addImageAt(int start, int width, int height, Image i, boolean b) {
 
         Image resizedImage = (Image) i.getScaledInstance(width, height, Image.SCALE_SMOOTH);
 
         JLabel l = new JLabel(new ImageIcon(resizedImage));
         l.setSize(width, height);
+        if(b)
+        {
+            insertTextAt(start, "\n");
+            setCaretPosition(start+1);
+            insertComponent(l);
+            setCaretPosition(start+2);
+            
+        }else{
         setCaretPosition(start);
         insertComponent(l);
-        setCaretPosition(start + 1);
+        setCaretPosition(start+1);
+        }
+        
     }
 
 }
