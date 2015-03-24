@@ -144,8 +144,9 @@ public class EZTextPane extends JTextPane {
 
     /**
      *
-     * @param start - the starting index >=0
-     * @param end   - the ending index <= document length
+     * @param start - the starting index; start is greater than or equal to 0
+     * 
+     * @param end   - the ending index; end is less than or equal to document length
      */
     public void setStyle(int start, int end) {
 

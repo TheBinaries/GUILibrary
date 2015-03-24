@@ -71,30 +71,7 @@ public class EZLabel extends JLabel {
 
     }
 
-    /**
-     *
-     * @param direction the direction the text is placed at
-     * @see EZGUIConstants.CLOCKWISE
-     * @see EZGUIConstants.COUNTERCLOCKWISE
-     * @see EZGUIConstants.Reflection
-     */
-    public void rotateText(int direction) {
-        Graphics g = getGraphics().create();
-        Graphics2D g2 = (Graphics2D) g;
-        if (direction == EZGUIConstants.CLOCKWISE) {
-            g2.rotate(Math.PI / 2.0);
-            g2.translate(0, -getSize().width);
-        } else if (direction == EZGUIConstants.COUNTERCLOCKWISE) {
-            g2.translate(0, getSize().height);
-            g2.rotate(-Math.PI / 2.0);
 
-        } else {
-            g2.rotate(Math.PI);
-
-        }
-        super.paintComponent(g2);
-
-    }
 
     public void setText_IconAlignment(int horizontal, int vertical) {
 

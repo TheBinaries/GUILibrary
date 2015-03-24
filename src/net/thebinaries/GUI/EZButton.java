@@ -70,44 +70,11 @@ public class EZButton extends JButton {
        
         
     }
-    /**
-     * 
-     * @param direction the direction the text is placed at
-     * @param g the graphic of the component
-     * @see EZGUIConstants.CLOCKWISE
-     * @see EZGUIConstants.COUNTERCLOCKWISE
-     * @see EZGUIConstants.Reflection
-     */
-    public int rotateText(int direction)
-    {
-        textdirection = direction ;
-        text = getText() ;
-        repaint() ;
-    return direction ;
-     
-         
-}
-     
-        
-    @Override
-        public void paintComponent(Graphics g)
-        {
-                super.paintComponent(g); 
-       Graphics2D g2 = (Graphics2D) g ;
-      if (textdirection == EZGUIConstants.CLOCKWISE ) {
-           g2.translate(0, -getSize().width);
-            g2.rotate(-Math.PI / 2.0);
-           
-          g2.drawString("HELLO", 0, 0);
-          System.out.println(text);
-       // g2.rotate(Math.PI / 2.0);
-        // g2.translate(0, getSize().width);
+  
 
-      } else if (textdirection == EZGUIConstants.COUNTERCLOCKWISE)  {
-         g2.translate(0, getSize().height);
-         g2.rotate(- Math.PI / 2.0);
+     
         
-      }
+   
   
       
   
@@ -115,7 +82,7 @@ public class EZButton extends JButton {
        
         
         
-        }
+        
         
     
     
