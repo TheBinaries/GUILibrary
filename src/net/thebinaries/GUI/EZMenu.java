@@ -44,19 +44,25 @@ public class EZMenu extends JMenu {
 
     }
     
-    public EZMenu(String s){
-    super(s) ;
-    } 
+    /**
+     * 
+     * @param name the name of the menu 
+     */
+    public EZMenu(String name) {
+        super(name);
+    }
     
-    public EZMenu(){
-    
+    /**
+     * Constructor that takes no arguments
+     */
+    public EZMenu() {
+
     }
 
     /**
      *
      * @param quantity the number of separators to add
-     * @param place    the place within the drop down list in which the
-     *                 separators will be placed
+     * @param place the place within the drop down list in which the separators will be placed
      */
     public void addSeperators(int quantity, int[] place) {
         int compNum = this.getComponentCount();
@@ -66,27 +72,22 @@ public class EZMenu extends JMenu {
             temp.add((JComponent) getComponent(i));
 
         }
-        int index = 0 ;
+        int index = 0;
         for (int j = 0; j < (temp.size() + place.length); j++) {
-            if(place[index] == j)
-            {
-            addSeparator(); 
-            index++ ;
-            }else
-            {
-            
-            add(temp.get(j)) ;
-            
+            if (place[index] == j) {
+                addSeparator();
+                index++;
+            } else {
+
+                add(temp.get(j));
+
             }
         }
 
     }
-    
-     public void setHighlightColor(Color c)
-    {
-    UIManager.put("Menu.setBackground", c) ;
-    }
 
-  
+    public void setHighlightColor(Color c) {
+        UIManager.put("Menu.setBackground", c);
+    }
 
 }
