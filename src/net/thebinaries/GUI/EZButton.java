@@ -20,13 +20,15 @@ import javax.swing.JComponent;
  * @author Jacob
  */
 public class EZButton extends JButton {
-    public int textdirection = 0 ;
-    public String text = getText() ;
-/**
- * 
- * @param text the text placed on the button
+
+    public int textdirection = 0;
+    public String text = getText();
+
+    /**
+     *
+     * @param text the text placed on the button
      * @param icon the icon of the button
- */
+     */
     public EZButton(String text, Icon icon) {
         super(text);
         setIcon(icon);
@@ -41,17 +43,19 @@ public class EZButton extends JButton {
         super(text);
         setFont(f);
     }
-    
-    public EZButton(String s)
-    {
-    super(s) ;
-    
+    /**
+     * 
+     * @param text the text placed on the button
+     */
+    public EZButton(String text) {
+        super(text);
+
     }
-    
-    public EZButton()
-    {
-    
-    
+    /**
+     * Constructor with no arguments
+     */
+    public EZButton() {
+
     }
 
     /**
@@ -64,46 +68,32 @@ public class EZButton extends JButton {
         setForeground(fg);
 
     }
-    /**
-     * 
-     * @param horizontal set the text's horizontal alignment using JComponent Constants
-     * @param vertical set the text's vertical alignment using JComponent Constants
-     */
-    public void setTextAlignment(int horizontal, int vertical){
-        
-       setVerticalTextPosition(vertical);
-        setHorizontalTextPosition(horizontal);
-       
-        
-    }
-  
 
-     
-        
-   
-  
-      
-  
-        
-       
-        
-        
-        
-        
-    
-    
-    public void setText_IconAlignment(int horizontal, int vertical)
-    {
-    
-      setVerticalAlignment(vertical);
+    /**
+     *
+     * @param horizontal set the text's horizontal alignment using JComponent
+     * Constants
+     * @param vertical set the text's vertical alignment using JComponent
+     * Constants
+     */
+    public void setTextAlignment(int horizontal, int vertical) {
+
+        setVerticalTextPosition(vertical);
+        setHorizontalTextPosition(horizontal);
+
+    }
+
+    public void setText_IconAlignment(int horizontal, int vertical) {
+
+        setVerticalAlignment(vertical);
         setHorizontalAlignment(horizontal);
     }
 
     /**
      *
      * @param components the components that will be added to the parent
-     *                   component
-     * @param layout     the layout of the component
+     * component
+     * @param layout the layout of the component
      */
     public void addComponents(Collection<JComponent> components, LayoutManager layout) {
         setLayout(layout);
@@ -114,5 +104,5 @@ public class EZButton extends JButton {
 
         }
     }
-    
+
 }

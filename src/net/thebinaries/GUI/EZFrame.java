@@ -47,7 +47,7 @@ public class EZFrame extends JFrame {
      * @param components a collection of components that will be added to the
      *                   parent component
      * @param layout     the layout of the parent component(determines the
-     *                   arrangement of the components to be added
+     *                   arrangement of the components to be added)
      */
     public void addComponents(Collection<JComponent> components, LayoutManager layout) {
         setLayout(layout);
