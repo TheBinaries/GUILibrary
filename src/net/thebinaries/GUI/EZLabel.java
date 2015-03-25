@@ -45,6 +45,9 @@ public class EZLabel extends JLabel {
         super(s);
 
     }
+    
+    public EZLabel(){
+    } 
 
     /**
      *

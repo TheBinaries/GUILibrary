@@ -35,6 +35,12 @@ public class EZFrame extends JFrame {
         super(title);
 
     }
+    
+    
+    public EZFrame()
+    {
+    
+    }
 
     /**
      *

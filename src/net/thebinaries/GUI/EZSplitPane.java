@@ -15,12 +15,7 @@ import javax.swing.JSplitPane;
  */
 public class EZSplitPane extends JSplitPane {
     
-    public EZSplitPane()
-    {
-    
-    
-    
-    }
+    public EZSplitPane() {   }
     public EZSplitPane(int orientation)
     {
      if(orientation == EZGUIConstants.HORIZONTAL_SPLIT){
@@ -51,6 +46,20 @@ public class EZSplitPane extends JSplitPane {
                 setResizeWeight(ratio);
         }
 
+        
+    }
+    
+    @Override
+    public void setOrientation(int i){
+        if(i == JSplitPane.VERTICAL_SPLIT || i == EZGUIConstants.HORIZONTAL_SPLIT){
+        
+        super.setOrientation(EZGUIConstants.HORIZONTAL_SPLIT) ;
+        
+        }else 
+            
+            super.setOrientation(EZGUIConstants.VERTICAL_SPLIT) ;
+        
+        
         
     }
     

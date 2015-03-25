@@ -40,6 +40,10 @@ public class EZPanel extends JPanel {
         
         
         }
+        
+        public EZPanel() {
+        
+        } 
         /**
          * 
          * @param components the components that will be added to the parent component

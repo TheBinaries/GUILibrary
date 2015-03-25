@@ -47,6 +47,12 @@ public class EZButton extends JButton {
     super(s) ;
     
     }
+    
+    public EZButton()
+    {
+    
+    
+    }
 
     /**
      *

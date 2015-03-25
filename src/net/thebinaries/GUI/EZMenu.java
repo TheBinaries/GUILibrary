@@ -5,12 +5,14 @@
  */
 package net.thebinaries.GUI;
 
+import java.awt.Color;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.UIManager;
 
 /**
  *
@@ -40,6 +42,14 @@ public class EZMenu extends JMenu {
 
         }
 
+    }
+    
+    public EZMenu(String s){
+    super(s) ;
+    } 
+    
+    public EZMenu(){
+    
     }
 
     /**
@@ -71,20 +81,12 @@ public class EZMenu extends JMenu {
         }
 
     }
-
-    /**
-     *
-     * @param components the components that will be added to the parent
-     *                   component
-     * @param layout     the layout of the component
-     */
-    public void addComponents(Collection<JComponent> components, LayoutManager layout) {
-        setLayout(layout);
-
-        components.stream().forEach((i) -> {
-            add((JComponent) i);
-        });
-
+    
+     public void setHighlightColor(Color c)
+    {
+    UIManager.put("Menu.setBackground", c) ;
     }
+
+  
 
 }

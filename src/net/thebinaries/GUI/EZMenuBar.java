@@ -37,14 +37,33 @@ public class EZMenuBar extends JMenuBar {
         }
         for(int i = 0 ; i < menu.length;i++)
         {
-            for(int j = 0; j < menuItems[i].length ; j++)
-            {
-            ((JMenu)menu[i]).add(menuItems[i][j]) ;
-            
+            for (JComponent menuItem : menuItems[i]) {
+                ((JMenu)menu[i]).add(menuItem);
             }
         
         }
     }
+    
+       public EZMenuBar(String[] menu,String[][] menuItems){
+        for (String menu1 : menu) {
+            add(new EZMenu(menu1));
+        }
+        for(int i = 0 ; i < menu.length;i++)
+        {
+            for (String menuItem : menuItems[i]) {
+                EZMenuItem x = new EZMenuItem(menuItem) ;
+            //  System.out.println(  x.getHighlightColor()) ;
+                ((EZMenu)getComponent(i)).add(x);
+            }
+        
+        }
+    }
+    
+    
+    
+    public EZMenuBar(){
+        
+    } 
     /**
      * 
      * @param components the components that will be added to the parent component

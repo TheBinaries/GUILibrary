@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JTextPane;
+import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
@@ -140,6 +141,12 @@ public class EZTextPane extends JTextPane {
      */
     public Color getColor() {
         return sd.getForeground(as);
+    }
+    
+    
+    public SimpleAttributeSet getAttributeSet(){
+        
+        return as ;
     }
 
     /**
