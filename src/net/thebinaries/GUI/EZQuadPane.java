@@ -152,6 +152,33 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
 
         }
     }
+    
+    public void setSplitComponentOne(JComponent c)
+    {
+    if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+            setTopComponent(c);
+
+        } else {
+          setLeftComponent(c);
+
+        }
+    
+    
+    }
+    
+      
+    public void setSplitComponentTwo(JComponent c)
+    {
+    if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+            setBottomComponent(c);
+
+        } else {
+          setRightComponent(c);
+
+        }
+    
+    
+    }
 
     public JComponent getSplitComponentOne() {
         return splitPane1;

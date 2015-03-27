@@ -82,10 +82,6 @@ public class EZMenu extends JMenu {
 
     }
     
-     public void setHighlightColor(Color c)
-    {
-    UIManager.put("Menu.setBackground", c) ;
-    }
 
   
 

@@ -29,23 +29,13 @@ public class EZMenuItem extends JMenuItem{
     
     public EZMenuItem(String s){
         super(s) ;
-        setHighlightColor(Color.red);
+      
     }
     
     public EZMenuItem(){
         
     }
-    
-    
-    public void setHighlightColor(Color c)
-    {
-    UIManager.put("MenuItem.selectionBackground", c) ;
-    }
-    
-    public Color getHighlightColor()
-    {
-   return (Color) UIManager.get("MenuItem.selectionBackground") ;
-    }
+ 
     
     
 }
