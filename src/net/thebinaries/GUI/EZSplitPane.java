@@ -14,11 +14,24 @@ import javax.swing.JSplitPane;
  * @author Jacob
  */
 public class EZSplitPane extends JSplitPane {
-    
-    public EZSplitPane() {   }
+     public static final int HORIZONTAL_SPLIT = 0 ;
+          public static final int VERTICAL_SPLIT = 1 ;
+  public EZSplitPane(){
+
+    if(getOrientation() == HORIZONTAL_SPLIT){
+            setTopComponent(new JPanel());
+            setBottomComponent(new JPanel());
+           
+                    setResizeWeight(.5);
+        }else{
+        setLeftComponent(new JPanel());
+        setRightComponent(new JPanel());
+                setResizeWeight(.5);
+        }
+  }
     public EZSplitPane(int orientation)
     {
-     if(orientation == EZGUIConstants.HORIZONTAL_SPLIT){
+     if(orientation == HORIZONTAL_SPLIT){
             setTopComponent(new JPanel());
             setBottomComponent(new JPanel());
            
@@ -34,7 +47,7 @@ public class EZSplitPane extends JSplitPane {
     public EZSplitPane(JComponent c1 , JComponent c2,int  orientation,double ratio)
     {
         
-        if(orientation == EZGUIConstants.HORIZONTAL_SPLIT){
+        if(orientation == HORIZONTAL_SPLIT){
             setTopComponent(c1);
             setBottomComponent(c2);
               
@@ -51,13 +64,13 @@ public class EZSplitPane extends JSplitPane {
     
     @Override
     public void setOrientation(int i){
-        if(i == JSplitPane.VERTICAL_SPLIT || i == EZGUIConstants.HORIZONTAL_SPLIT){
+        if(i == JSplitPane.VERTICAL_SPLIT || i == HORIZONTAL_SPLIT){
         
-        super.setOrientation(EZGUIConstants.HORIZONTAL_SPLIT) ;
+        super.setOrientation(HORIZONTAL_SPLIT) ;
         
         }else 
             
-            super.setOrientation(EZGUIConstants.VERTICAL_SPLIT) ;
+            super.setOrientation(VERTICAL_SPLIT) ;
         
         
         

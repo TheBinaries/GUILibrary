@@ -17,28 +17,61 @@ import javax.swing.JSplitPane;
  */
 public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
 
-    private EZSplitPane splitPane1;
-    private EZSplitPane splitPane2;
-
+    private static EZSplitPane splitPane1;
+    private static EZSplitPane splitPane2;
+    public static final int HORIZONTAL_SPLIT = 0 ;
+    public static final int VERTICAL_SPLIT = 1 ;
     private static boolean isIndependent = true;
 
-    public EZQuadPane(int orientation) {
-        if (orientation == EZGUIConstants.HORIZONTAL_SPLIT) {
-            splitPane1 = new EZSplitPane(EZGUIConstants.VERTICAL_SPLIT);
-            splitPane2 = new EZSplitPane(EZGUIConstants.VERTICAL_SPLIT);
-            splitPane1.setOrientation(EZGUIConstants.VERTICAL_SPLIT);
-            splitPane2.setOrientation(EZGUIConstants.VERTICAL_SPLIT);
+    public EZQuadPane(){ 
+         if (getOrientation() == HORIZONTAL_SPLIT) {
+            splitPane1 = new EZSplitPane(VERTICAL_SPLIT);
+            splitPane2 = new EZSplitPane(VERTICAL_SPLIT);
             setOrientation(JSplitPane.VERTICAL_SPLIT);
             setTopComponent(splitPane1);
             setBottomComponent(splitPane2);
 
             setResizeWeight(.5);
-        } else if (orientation == EZGUIConstants.VERTICAL_SPLIT) {
-            splitPane1 = new EZSplitPane(EZGUIConstants.HORIZONTAL_SPLIT);
-            splitPane2 = new EZSplitPane(EZGUIConstants.HORIZONTAL_SPLIT);
-            splitPane1.setOrientation(EZGUIConstants.HORIZONTAL_SPLIT);
-            splitPane2.setOrientation(EZGUIConstants.HORIZONTAL_SPLIT);
-            setOrientation(EZGUIConstants.VERTICAL_SPLIT);
+        } else if (getOrientation() == VERTICAL_SPLIT) {
+            splitPane1 = new EZSplitPane(HORIZONTAL_SPLIT);
+            splitPane2 = new EZSplitPane(HORIZONTAL_SPLIT);
+            setOrientation(VERTICAL_SPLIT);
+            setLeftComponent(splitPane1);
+            setRightComponent(splitPane2);
+            setResizeWeight(.5);
+        }
+        splitPane1.setContinuousLayout(true);
+        splitPane2.setContinuousLayout(true);
+        setContinuousLayout(true);
+
+        splitPane1.setOneTouchExpandable(true);
+        if (!isIndependent) {
+            splitPane2.setOneTouchExpandable(true);
+        } else {
+            splitPane2.setOneTouchExpandable(true);
+        }
+        setOneTouchExpandable(true);
+        splitPane1.addPropertyChangeListener(this);
+        splitPane2.addPropertyChangeListener(this);
+            } ;
+    /**
+     *
+     * @param orientation
+     */
+    public EZQuadPane(int orientation) {
+        
+        if (orientation == HORIZONTAL_SPLIT) {
+            splitPane1 = new EZSplitPane(VERTICAL_SPLIT);
+            splitPane2 = new EZSplitPane(VERTICAL_SPLIT);
+            setOrientation(JSplitPane.VERTICAL_SPLIT);
+            setTopComponent(splitPane1);
+            setBottomComponent(splitPane2);
+
+            setResizeWeight(.5);
+        } else if (orientation == VERTICAL_SPLIT) {
+            splitPane1 = new EZSplitPane(HORIZONTAL_SPLIT);
+            splitPane2 = new EZSplitPane(HORIZONTAL_SPLIT);
+            setOrientation(VERTICAL_SPLIT);
             setLeftComponent(splitPane1);
             setRightComponent(splitPane2);
             setResizeWeight(.5);
@@ -59,23 +92,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
 
     }
 
-    public EZQuadPane() {
-        splitPane1.setContinuousLayout(true);
-        splitPane2.setContinuousLayout(true);
-        setContinuousLayout(true);
-
-        splitPane1.setOneTouchExpandable(true);
-        if (!isIndependent) {
-            splitPane2.setOneTouchExpandable(true);
-        } else {
-            splitPane2.setOneTouchExpandable(true);
-        }
-        setOneTouchExpandable(true);
-        splitPane1.addPropertyChangeListener(this);
-        splitPane2.addPropertyChangeListener(this);
-
-    }
-
+  
     public void setSubDividersIndependent(boolean b) {
 
         isIndependent = b;
@@ -113,7 +130,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
 
     //***************************************************************************************
     public void setTopLeftComponent(JComponent c) {
-        if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+        if (getOrientation() == HORIZONTAL_SPLIT) {
             splitPane1.setLeftComponent(c);
 
         } else {
@@ -123,7 +140,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
     }
 
     public void setTopRightComponent(JComponent c) {
-        if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+        if (getOrientation() == HORIZONTAL_SPLIT) {
             splitPane1.setRightComponent(c);
 
         } else {
@@ -133,7 +150,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
     }
 
     public void setBottomRightComponent(JComponent c) {
-        if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+        if (getOrientation() == HORIZONTAL_SPLIT) {
             splitPane2.setRightComponent(c);
 
         } else {
@@ -144,7 +161,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
     }
 
     public void setBottomLeftComponent(JComponent c) {
-        if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+        if (getOrientation() == HORIZONTAL_SPLIT) {
             splitPane2.setLeftComponent(c);
 
         } else {
@@ -155,7 +172,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
     
     public void setSplitComponentOne(JComponent c)
     {
-    if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+    if (getOrientation() == HORIZONTAL_SPLIT) {
             setTopComponent(c);
 
         } else {
@@ -169,7 +186,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
       
     public void setSplitComponentTwo(JComponent c)
     {
-    if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+    if (getOrientation() == HORIZONTAL_SPLIT) {
             setBottomComponent(c);
 
         } else {
@@ -192,7 +209,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
 
 //**********************************************************
     public Component getTopLeftComponent() {
-        if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+        if (getOrientation() == HORIZONTAL_SPLIT) {
             return splitPane1.getLeftComponent();
 
         } else {
@@ -203,7 +220,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
     }
 
     public Component getTopRightComponent() {
-        if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+        if (getOrientation() == HORIZONTAL_SPLIT) {
         return    splitPane1.getRightComponent();
 
         } else {
@@ -213,7 +230,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
     }
 
     public Component getBottomRightComponent() {
-        if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+        if (getOrientation() == HORIZONTAL_SPLIT) {
             return splitPane2.getRightComponent();
 
         } else {
@@ -224,7 +241,7 @@ public class EZQuadPane extends EZSplitPane implements PropertyChangeListener {
     }
 
     public Component getBottomLeftComponent() {
-        if (getOrientation() == EZGUIConstants.HORIZONTAL_SPLIT) {
+        if (getOrientation() == HORIZONTAL_SPLIT) {
             return splitPane2.getLeftComponent();
 
         } else {

@@ -76,43 +76,24 @@ public class EZButton extends JButton {
        
         
     }
-  
 
-     
-        
-   
-  
-      
-  
-        
-       
-        
-        
-        
-        
-    
-    
     public void setText_IconAlignment(int horizontal, int vertical)
     {
     
       setVerticalAlignment(vertical);
         setHorizontalAlignment(horizontal);
     }
-
     /**
-     *
-     * @param components the components that will be added to the parent
-     *                   component
-     * @param layout     the layout of the component
+     * 
+     * @param b sets if the background of the JComponent is transparent
      */
-    public void addComponents(Collection<JComponent> components, LayoutManager layout) {
-        setLayout(layout);
-        Object[] list = components.toArray();
-        for (int i = 0; i < components.size(); i++) {
-
-            add((JComponent) list[i]);
-
-        }
+    public void setBackgroundTransparent(boolean b)
+    {
+        setFocusPainted(b);
+        setBorderPainted(b) ;
+        setOpaque(b) ;
+    
+    
     }
     
 }

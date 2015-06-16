@@ -26,21 +26,28 @@ public class EZFrame extends JFrame {
         super(title);
         setSize(new Dimension(width, height));
     }
-
     /**
-     *
-     * @param title the title of the Window
+     * 
+     * @param maximized determines if the frame is maximized or not
      */
-    public EZFrame(String title) {
-        super(title);
-
-    }
-    
-    
-    public EZFrame()
+    public EZFrame(boolean maximized)
     {
+        if(maximized)
+    setExtendedState(JFrame.MAXIMIZED_BOTH) ;
+    
     
     }
+   
+    /**
+     * @param w sets the width of the frame
+     * @param h sets the height of the frame
+     */
+    public void setFrameSize(int w , int h)
+    {
+        setSize(new Dimension(w,h));
+    
+    }
+
 
     /**
      *
